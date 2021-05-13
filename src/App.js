@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/home';
 import NotFound from './components/notFound';
 import Registro from './components/registerForm';
+import Login from './components/loginForm';
 import NavBar from './components/navbar';
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
         <main className='App'>
           <Switch>
             <Route path='/registro' component={Registro} />
-            {/* <Route path='/login' component={Login} /> */}
+            <Route path='/login' component={Login} />
             {/* <Route path='/perfil' component={Perfil} /> */}
             {/* <Route path="/cargacv" component={cargacv} />
       <Route path="/mostrarcv" component={mostrarcv} />
