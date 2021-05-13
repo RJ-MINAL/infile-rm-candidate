@@ -32,13 +32,11 @@ export const UploadForm = ({userUrl}) => {
   }
 
   // form submit
-  const handlePdfFileSubmit=(e)=>{
+  const handlePdfFileSubmit=async (e)=>{
     e.preventDefault();
     const urlApi = `${http.API.USUARIOS }/${userUrl}/cargar_cv`;
-    // http.post(urlApi, { curriculum: pdfFile });
-    console.log('PDF pdfFile', pdfFile);
-    console.log('PDF urlApi', urlApi);
-
+    const respuesta = await http.post(urlApi, { curriculum: pdfFile });
+    console.log("UPLOAD PDF respuesta: ",respuesta);
   }
 
   return (
