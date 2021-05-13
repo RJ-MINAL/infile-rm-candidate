@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './components/home';
 import NotFound from './components/notFound';
+import Registro from './components/registerForm';
+import NavBar from './components/navbar';
 
 class App extends Component {
   state = {};
@@ -20,10 +22,10 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        {/* <NavBar user={user} /> */}
-        <main className='container'>
+        <NavBar user={user} />
+        <main className='App'>
           <Switch>
-            {/* <Route path='/registro' component={Registro} /> */}
+            <Route path='/registro' component={Registro} />
             {/* <Route path='/login' component={Login} /> */}
             {/* <Route path='/perfil' component={Perfil} /> */}
             {/* <Route path="/cargacv" component={cargacv} />

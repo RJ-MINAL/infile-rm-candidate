@@ -14,19 +14,19 @@ class Home extends PureComponent {
 
     render() {
         return (
-            <div className='App'>
+            <React.Fragment>
             <header className='App-header'>
               <img src={logo} className='App-logo' alt='logo' />
               <p>
                 Edit <code>src/App.js</code> and save to reload.
               </p>
               <Link to='/registro'>
-                <Button renderAs='button'>
+                <Button renderas='button'>
                   <span>Registro</span>
                 </Button>
               </Link>
             </header>
-          </div>
+          </React.Fragment>
         )
     }
 }
