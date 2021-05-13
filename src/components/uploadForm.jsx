@@ -2,18 +2,14 @@ import React,{useState} from 'react'
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import ViewPdfFile from './viewPdfFile'
-import axios from 'axios';
 import http from "../services/httpService";
-import auth from "../services/authService";
-
-// const FormData = require('form-data');
-const fs = require('fs');
 
 export const UploadForm = ({userUrl}) => {
   
   const [pdfFile, setPdfFile]=useState(null);
   const [pdfFileError, setPdfFileError]=useState('');
   const [viewPdf, setViewPdf]=useState(null);
+  const [apiUrlPdf, setApiUrlPdf]=useState(null);
 
   // onchange event
   const fileType=['application/pdf'];
@@ -44,21 +40,27 @@ export const UploadForm = ({userUrl}) => {
   }
 
   // form submit
-  const handlePdfFileSubmit= (e) =>{
+  const handlePdfFileSubmit= async (e) =>{
     e.preventDefault();
     if(!pdfFile){ setViewPdf(null); return; }
-    axios.defaults.headers.common['Authorization'] = auth.getJwt();
     const urlApi = `${http.API.USUARIOS }/${userUrl}/cargar_cv`;
-    // const urlApi = "https://httpbin.org/post";
     
     let formData = new FormData();
     formData.append("curriculum", pdfFile);
     const config = { headers: { "content-type": "multipart/form-data" } };
 
-    
-    axios.post(urlApi, formData, config)
-    .then(res => console.log("FILE UPLOADED SUCCESSFULLY", res))
-    .catch(err => console.log("ERROR WHILE UPLOADING FILE", err));
+    try {
+      const { data } = await http.post(urlApi, formData, config);
+      console.log("CARGA_CV response", data);
+      localStorage.setItem("url_cv", data.url_cv);
+      setApiUrlPdf(data.url_cv);
+      setPdfFileError('');
+
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        console.log("ERRORS", ex.response.data);
+      }
+    }
 };
 
   return (
