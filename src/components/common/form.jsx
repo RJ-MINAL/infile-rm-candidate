@@ -23,7 +23,7 @@ class Form extends PureComponent {
 
   renderButton(label) {
     return (
-      <button  className="btn btn-primary">
+      <button  className="btn btn-primary btn-lg">
         {label}
       </button>
     );

@@ -3,11 +3,13 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import NavBar from './components/navbar';
 import Home from './components/home';
 import NotFound from './components/notFound';
+import ProtectedRoute from './components/common/protectedRoute';
 import Registro from './components/registerForm';
 import Login from './components/loginForm';
-import NavBar from './components/navbar';
+import Perfil from './components/perfil';
 
 class App extends Component {
   state = {};
@@ -28,7 +30,7 @@ class App extends Component {
           <Switch>
             <Route path='/registro' component={Registro} />
             <Route path='/login' component={Login} />
-            {/* <Route path='/perfil' component={Perfil} /> */}
+            <ProtectedRoute path='/perfil' component={Perfil} />
             {/* <Route path="/cargacv" component={cargacv} />
       <Route path="/mostrarcv" component={mostrarcv} />
       <Route path="/logout" component={Logout} /> */}
