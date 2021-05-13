@@ -5,7 +5,7 @@ API.USUARIOS = 'https://candidates-exam.herokuapp.com/api/v1/usuarios';
 API.LOGIN = 'https://candidates-exam.herokuapp.com/api/v1/auth/login';
 
 function setJwt(jwt) {
-  // axios.defaults.headers.common['Authorization'] = jwt;
+  axios.defaults.headers.common['Authorization'] = jwt;
 }
 
 const objExported = {

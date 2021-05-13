@@ -16,7 +16,7 @@ const ProtectedRoute = ({ path, component: Component, render, ...rest }) => {
               }}
             />
           );
-        return Component ? <Component {...props} user={user} /> : render(props);
+        return Component ? <Component {...props} userUrl={user} /> : render(props);
       }}
     />
   );

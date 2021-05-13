@@ -24,7 +24,7 @@ export function logout() {
 export function getCurrentUser() {
   try {
     const user = localStorage.getItem(userUrl);
-    return user.toUpperCase();
+    return user;
     // return jwtDecode(jwt);
   } catch (ex) {
     return null;
