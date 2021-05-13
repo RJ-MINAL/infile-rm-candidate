@@ -1,12 +1,14 @@
 import React,{useState} from 'react'
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import ViewPdfFile from './viewPdfFile'
 import http from "../services/httpService";
 
 export const UploadForm = ({userUrl}) => {
   
   const [pdfFile, setPdfFile]=useState(null);
   const [pdfFileError, setPdfFileError]=useState('');
+  const [viewPdf, setViewPdf]=useState(null);
 
   // onchange event
   const fileType=['application/pdf'];
@@ -34,12 +36,16 @@ export const UploadForm = ({userUrl}) => {
   // form submit
   const handlePdfFileSubmit=async (e)=>{
     e.preventDefault();
-    const urlApi = `${http.API.USUARIOS }/${userUrl}/cargar_cv`;
-    const respuesta = await http.post(urlApi, { curriculum: pdfFile });
-    console.log("UPLOAD PDF respuesta: ",respuesta);
+    // const urlApi = `${http.API.USUARIOS }/${userUrl}/cargar_cv`;
+    // const respuesta = await http.post(urlApi, { curriculum: pdfFile });
+    // console.log("UPLOAD PDF respuesta: ",respuesta);
+
+    if(pdfFile!==null){ setViewPdf(pdfFile); }
+    else{ setViewPdf(null); }
   }
 
   return (
+    <React.Fragment>
       <form className='form-group' onSubmit={handlePdfFileSubmit}>
         <input type="file" className='form-control'
           required onChange={handlePdfFileChange}
@@ -50,6 +56,9 @@ export const UploadForm = ({userUrl}) => {
           UPLOAD
         </button>
       </form>
+      <br />
+      <ViewPdfFile viewPdf={viewPdf} ></ViewPdfFile>
+      </React.Fragment>
   )
 }
 

@@ -12,7 +12,6 @@ import Registro from './components/registerForm';
 import Login from './components/loginForm';
 import Logout from './components/logout';
 import Perfil from './components/perfil';
-import Curriculum from './components/curriculum';
 import UploadForm from './components/uploadForm';
 
 class App extends Component {
