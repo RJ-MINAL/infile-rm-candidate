@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import UploadForm from './uploadForm';
 import http from '../services/httpService'
 
 class Perfil extends PureComponent {
@@ -48,18 +49,14 @@ class Perfil extends PureComponent {
               <h1 className="display-3">Hello, {user.nombre}!</h1>
               <p>Email: {user.email} </p>
               <p>URL: {user.url} </p>
+              <UploadForm userUrl = {user.url}></UploadForm>
+              <Link to='/mostrarcv'>
+                <Button renderas='button'>
+                  <span>Mostrar CV</span>
+                </Button>
+              </Link>
             </React.Fragment>
           )}
-        <Link to='/curriculum'>
-          <Button renderas='button'>
-            <span>Cargar CV</span>
-          </Button>
-        </Link>
-        <Link to='/mostrarcv'>
-          <Button renderas='button'>
-            <span>Mostrar CV</span>
-          </Button>
-        </Link>
       </div>
     </div>
     )
