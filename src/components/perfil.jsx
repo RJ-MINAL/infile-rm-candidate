@@ -19,7 +19,6 @@ class Perfil extends PureComponent {
   async componentDidMount() {
     //moveria a protectedRoute de ser necesario
     const { data } = await http.get(http.API.USUARIOS);
-    console.log("PERFIL DID MOUNT", data);
     this.setState({ user: {...data} })
   }
 

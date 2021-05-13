@@ -2,7 +2,12 @@ import React,{useState} from 'react'
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import ViewPdfFile from './viewPdfFile'
+import axios from 'axios';
 import http from "../services/httpService";
+import auth from "../services/authService";
+
+// const FormData = require('form-data');
+const fs = require('fs');
 
 export const UploadForm = ({userUrl}) => {
   
@@ -16,12 +21,17 @@ export const UploadForm = ({userUrl}) => {
     let selectedFile=e.target.files[0];
     if(selectedFile){
       if(selectedFile&&fileType.includes(selectedFile.type)){
-        let reader = new FileReader();
-            reader.readAsDataURL(selectedFile);
-            reader.onloadend = (e) =>{
-              setPdfFile(e.target.result);
-              setPdfFileError('');
-            }
+        // console.log("selectedFile", selectedFile);
+        setPdfFile(selectedFile);
+        setPdfFileError('');
+              //         setPdfFile(e.target.result);
+      //         setPdfFileError('');
+      // let reader = new FileReader();
+      //     reader.readAsDataURL(selectedFile);
+      //       reader.onloadend = (e) =>{
+      //         setPdfFile(e.target.result);
+      //         setPdfFileError('');
+      //       }
       }
       else{
         setPdfFile(null);
@@ -34,15 +44,22 @@ export const UploadForm = ({userUrl}) => {
   }
 
   // form submit
-  const handlePdfFileSubmit=async (e)=>{
+  const handlePdfFileSubmit= (e) =>{
     e.preventDefault();
-    // const urlApi = `${http.API.USUARIOS }/${userUrl}/cargar_cv`;
-    // const respuesta = await http.post(urlApi, { curriculum: pdfFile });
-    // console.log("UPLOAD PDF respuesta: ",respuesta);
+    if(!pdfFile){ setViewPdf(null); return; }
+    axios.defaults.headers.common['Authorization'] = auth.getJwt();
+    const urlApi = `${http.API.USUARIOS }/${userUrl}/cargar_cv`;
+    // const urlApi = "https://httpbin.org/post";
+    
+    let formData = new FormData();
+    formData.append("curriculum", pdfFile);
+    const config = { headers: { "content-type": "multipart/form-data" } };
 
-    if(pdfFile!==null){ setViewPdf(pdfFile); }
-    else{ setViewPdf(null); }
-  }
+    
+    axios.post(urlApi, formData, config)
+    .then(res => console.log("FILE UPLOADED SUCCESSFULLY", res))
+    .catch(err => console.log("ERROR WHILE UPLOADING FILE", err));
+};
 
   return (
     <React.Fragment>
