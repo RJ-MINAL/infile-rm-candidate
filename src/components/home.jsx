@@ -18,7 +18,7 @@ class Home extends PureComponent {
             <header className='App-header'>
               <img src={logo} className='App-logo' alt='logo' />
               <p>
-                Edit <code>src/App.js</code> and save to reload.
+                Infile Candidate: <code>Rolando Minera</code> react website.
               </p>
               <Link to='/registro'>
                 <Button renderas='button'>
