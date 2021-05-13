@@ -20,11 +20,18 @@ class Home extends PureComponent {
               <p>
                 Infile Candidate: <code>Rolando Minera</code> react website.
               </p>
+              <div style={{display: "flex"}} className="flex">
               <Link to='/registro'>
-                <Button renderas='button'>
+                <Button renderas='button'size="lg">
                   <span>Registro</span>
                 </Button>
               </Link>
+              <Link to='/login'>
+                <Button renderas='button' size="lg">
+                  <span>Login</span>
+                </Button>
+              </Link>
+              </div>
             </header>
           </React.Fragment>
         )
