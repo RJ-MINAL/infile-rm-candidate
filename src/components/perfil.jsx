@@ -38,7 +38,7 @@ class Perfil extends PureComponent {
 
   render() {
     const { user } = this.state;
-    
+
     return (
       <div style={{paddingTop: "3.5rem"}} className="jumbotron">
       <div className="container">
@@ -50,11 +50,16 @@ class Perfil extends PureComponent {
               <p>URL: {user.url} </p>
             </React.Fragment>
           )}
-        <Link to='/logout'>
-              <Button renderas='button'>
-                <span>Logout</span>
-              </Button>
-            </Link>
+        <Link to='/curriculum'>
+          <Button renderas='button'>
+            <span>Cargar CV</span>
+          </Button>
+        </Link>
+        <Link to='/mostrarcv'>
+          <Button renderas='button'>
+            <span>Mostrar CV</span>
+          </Button>
+        </Link>
       </div>
     </div>
     )

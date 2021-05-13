@@ -12,6 +12,7 @@ import Registro from './components/registerForm';
 import Login from './components/loginForm';
 import Logout from './components/logout';
 import Perfil from './components/perfil';
+import Curriculum from './components/curriculum';
 
 class App extends Component {
   state = {};
@@ -33,6 +34,7 @@ class App extends Component {
             <Route path='/login' component={Login} />
             <ProtectedRoute path='/perfil' component={Perfil} user={user} />
             <Route path='/logout' component={Logout} />
+            <Route path='/curriculum' component={Curriculum} />
             {/* <Route path="/cargacv" component={cargacv} />
                 <Route path="/mostrarcv" component={mostrarcv} /> */}
             <Route
