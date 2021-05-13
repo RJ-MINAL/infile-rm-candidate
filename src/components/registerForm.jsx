@@ -1,7 +1,5 @@
-import React, { PureComponent } from 'react'
 import Form from "./common/form";
 import http from "../services/httpService";
-import auth from "../services/authService";
 
 class RegisterForm extends Form{
   state = {
@@ -13,20 +11,22 @@ class RegisterForm extends Form{
     }
   };
 
-  register = async (user) => {
+  register = (user) => {
     return http.post(http.API.USUARIOS, {
-      nombre: user.username,
+      nombre: user.nombre,
       email: user.email,
       password: user.password,
       password_confirmation: user.password_confirmation,
     });
+
   }
 
   doSubmit = async () => {
     try {
       const response = await this.register(this.state.data);
-      auth.loginWithJwt(response.headers["token"]);
-      window.location = "/";
+      console.log("response", response);
+      // auth.loginWithJwt(response.headers["token"]);
+      window.location = "/login";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         console.log("ERRORS", ex.response.data);

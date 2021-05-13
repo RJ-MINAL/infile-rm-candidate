@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import Input from "./input";
-// import Select from "./select";
 
 class Form extends PureComponent {
   state = {
@@ -28,21 +27,6 @@ class Form extends PureComponent {
       </button>
     );
   }
-
-//   renderSelect(name, label, options) {
-//     const { data, errors } = this.state;
-
-//     return (
-//       <Select
-//         name={name}
-//         value={data[name]}
-//         label={label}
-//         options={options}
-//         onChange={this.handleChange}
-//         error={errors[name]}
-//       />
-//     );
-//   }
 
   renderInput(name, label, type = "text") {
     const { data } = this.state;

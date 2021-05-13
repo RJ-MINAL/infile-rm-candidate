@@ -7,21 +7,22 @@ import NavBar from './components/navbar';
 import Home from './components/home';
 import NotFound from './components/notFound';
 import ProtectedRoute from './components/common/protectedRoute';
+import auth from './services/authService';
 import Registro from './components/registerForm';
 import Login from './components/loginForm';
+import Logout from './components/logout';
 import Perfil from './components/perfil';
 
 class App extends Component {
   state = {};
 
-  // componentDidMount() {
-  //   const user = auth.getCurrentUser();
-  //   this.setState({ user });
-  // }
+  componentDidMount() {
+    const user = auth.getCurrentUser();
+    this.setState({ user });
+  }
 
   render() {
-    // const { user } = this.state;
-    const { user } = '';
+    const { user } = this.state;
 
     return (
       <React.Fragment>
@@ -30,10 +31,10 @@ class App extends Component {
           <Switch>
             <Route path='/registro' component={Registro} />
             <Route path='/login' component={Login} />
-            <ProtectedRoute path='/perfil' component={Perfil} />
+            <ProtectedRoute path='/perfil' component={Perfil} user={user} />
+            <Route path='/logout' component={Logout} />
             {/* <Route path="/cargacv" component={cargacv} />
-      <Route path="/mostrarcv" component={mostrarcv} />
-      <Route path="/logout" component={Logout} /> */}
+                <Route path="/mostrarcv" component={mostrarcv} /> */}
             <Route
               path='/home'
               render={(props) => <Home {...props} user={user} />}

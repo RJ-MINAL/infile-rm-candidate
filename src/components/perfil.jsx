@@ -6,7 +6,7 @@ function Perfil({ user }) {
     return (
         <div style={{paddingTop: "3.5rem"}} class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Hello, "user.nombre"!</h1>
+          <h1 class="display-3">Hello, {user}!</h1>
           <Link to='/logout'>
                 <Button renderas='button'>
                   <span>Logout</span>
