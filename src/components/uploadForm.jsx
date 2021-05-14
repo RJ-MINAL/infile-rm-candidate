@@ -9,7 +9,6 @@ export const UploadForm = ({userUrl}) => {
   const [pdfFile, setPdfFile]=useState(null);
   const [pdfFileError, setPdfFileError]=useState('');
   const [viewPdf, setViewPdf]=useState(null);
-  const [apiUrlPdf, setApiUrlPdf]=useState(null);
 
   // onchange event
   const fileType=['application/pdf'];
@@ -52,9 +51,6 @@ export const UploadForm = ({userUrl}) => {
     try {
       const { data } = await http.post(urlApi, formData, config);
       console.log("CARGA_CV response", data);
-      localStorage.setItem("url_cv", data.url_cv);
-      setApiUrlPdf(data.url_cv);
-      setPdfFileError('');
 
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
