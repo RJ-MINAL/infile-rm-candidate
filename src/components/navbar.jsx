@@ -18,7 +18,7 @@ const NavBar = ({ user }) => {
       >
         <span className="navbar-toggler-icon" />
       </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div style={{ justifyContent: "flex-end", paddingRight: "1rem" }} className="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div className="navbar-nav">
           {!user && (
             <React.Fragment>
@@ -33,7 +33,7 @@ const NavBar = ({ user }) => {
           {user && (
             <React.Fragment>
               <NavLink className="nav-item nav-link" to="/perfil">
-                Perfil
+                Profile
               </NavLink>
               <NavLink className="nav-item nav-link" to="/logout">
                 Logout

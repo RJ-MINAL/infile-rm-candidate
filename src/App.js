@@ -35,8 +35,6 @@ class App extends Component {
             <ProtectedRoute path='/perfil' component={Perfil} user={user} />
             <Route path='/logout' component={Logout} />
             <Route path='/curriculum' component={UploadForm} />
-            {/* <Route path="/cargacv" component={cargacv} />
-                <Route path="/mostrarcv" component={mostrarcv} /> */}
             <Route
               path='/home'
               render={(props) => <Home {...props} user={user} />}
