@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import UploadForm from './uploadForm';
 import http from '../services/httpService'
@@ -36,6 +35,22 @@ class Perfil extends PureComponent {
     }
   };
 
+  handleMostrarButton= async (e) =>{
+    e.preventDefault();
+    const urlApi = `${http.API.USUARIOS }/mostrar_cv`;
+
+    try {
+      const { data } = await http.get(urlApi);
+      console.log("MOSRTRAR_CV response", data);
+      if(data.url) window.open(data.url, '_blank');
+
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        console.log("ERRORS", ex.response.data);
+      }
+    }
+};
+
   render() {
     const { user } = this.state;
 
@@ -49,11 +64,9 @@ class Perfil extends PureComponent {
               <p>Email: {user.email} </p>
               <p>URL: {user.url} </p>
               <UploadForm userUrl = {user.url}></UploadForm>
-              <Link to='/mostrarcv'>
-                <Button renderas='button'>
-                  <span>Mostrar CV</span>
-                </Button>
-              </Link>
+              <Button renderas='button' onClick={this.handleMostrarButton} >
+                <span>Mostrar CV</span>
+              </Button>
             </React.Fragment>
           )}
       </div>
